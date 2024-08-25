@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+
+:root{
+    --primary-color: #8052ec;
+    --light: #eee;
+    --dark: #313154;
+    --danger:  #e7140f;
+    --grey: #888;
+    --shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    --button-glow: 0px 0px 4px rgb(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background: linear-gradient(135deg, #8025ec, #d161ff);
+    color: var(--dark);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.todo-app{
+    background-color: var(--light);
+    color: var(--dark);
+    width: 70%;
+    max-height: 90%;
+    border-radius: 10px;
+    overflow: auto;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3)
+}
+
+.greeting .title{
+    display: flex;
+    gap : 0.3rem
+}
+    
+.greeting .title,
+.greeting .title input{
+    color: var(--dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+input, button {
+    appearance: none;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: initial;
+}
+
+section{
+    margin: 2rem 0px 2rem 0px;
+    padding : 0px 1.5rem 0px 1.5rem;
+}
+
+h3{
+    color: var(--dark);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+h4{
+    color: var(--grey);
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.add-todo #get-todo{
+    display: flex;
+    flex-direction: column;
+}
+
+.add-todo .input-box-and-buttons{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.add-todo .buttons-container{
+    width: 30%;
+    display: flex;
+    gap: 10px
+}
+
+.add-todo #todo-input-box {
+    display: block;
+    width: 70%;
+    font-size: 1.125rem;
+    padding: 1rem 1.5rem;
+    background-color: #fff;
+    color: var(--dark);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.add-todo 
+input[type='submit'],
+input[type='reset'] {
+    padding: 1rem;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 48%;
+    
+}
+
+.add-todo input[type='submit']{
+    background: var(--primary-color);
+}
+
+.add-todo input[type='reset']{
+    background: var(--danger);
+}
+
+.add-todo input[type="submit"]:active{
+    transform: scale(0.98);
+}
+.add-todo input[type="reset"]:active{
+    transform: scale(0.98);
+}
+
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todo-list #todo-list-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.todo-list .todo-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.todo-item .todo-content{
+    width: 80%;
+}
+
+.todo-item .todo-content input{
+    color: var(--dark);
+    font-size: 1.125rem;
+    width: 100%;
+}
+
+.todo-item .actions{
+    display: flex;
+    gap: 0.625rem;
+    width: 20%;
+}
+
+.todo-item .actions button{
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 50%;
+}
+
+.todo-item .actions button:active{
+    transform: scale(0.98);
+}
+
+.todo-item .actions .edit-btn{
+    background: var(--primary-color);
+}
+
+.todo-item .actions .delete-btn{
+    background: var(--danger);
+}
+
+.error-msg{
+    color: rgb(221, 6, 6);
+    margin: 5px;
+    font-size: 14px;
+}
+.error-border{
+    border: 1.5px solid red ;
+}
+
+.empty-msg{
+    margin: auto;
+    color: var(--grey);
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hide-cursor{
+    caret-color: transparent;
+}
+
+@media screen and (max-width:799px){
+
+    body{
+        display: unset;
+        background: unset;
+        color: unset;
+    }
+
+    .todo-app{
+        width: 100%;
+        height: 100vh;
+        border-radius: unset;
+    }
+
+    .greeting .title,
+    .greeting .title input{
+        font-size: 1.3rem;
+    }
+
+    .greeting h2 span{
+        text-wrap: nowrap;
+    }
+
+    .greeting .title, .greeting .title input {
+        font-size: 1.3rem;
+    }
+
+    #get-todo{
+        flex-direction: column;
+    }
+
+    #get-todo h4{
+        font-size: 0.775rem;
+    }
+
+    .input-box-and-buttons{
+        flex-direction: column;
+    }
+    .add-todo .buttons-container{
+        width: 100%;
+    }
+ 
+    .todo-item .todo-content input{
+        font-size: 0.9rem;
+    }
+
+    .todo-item .actions{
+        width: 30%;
+    }
+
+    .add-todo #todo-input-box{
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .add-todo input[type='submit'], 
+    input[type='reset'] {
+        width: 50%;
+    }
+    
+    .error-msg{
+        font-size: 12px;
+    }
+
+    .empty-msg{
+        font-size: 0.775rem;
+    }
+}
+
+@media screen and (min-width:799px) and (max-width:1200px){
+    
+    .todo-app{
+        width: 90%;
+    }
+
+    .add-todo input[type='submit'], 
+    input[type='reset']{
+        padding: 0.7rem
+    }
+}
