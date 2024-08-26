@@ -6,10 +6,9 @@
     --primary-color: #8052ec;
     --light: #eee;
     --dark: #313154;
-    --danger:  #e7140f;
+    --delete:  #e7140f;
     --grey: #888;
-    --shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    --button-glow: 0px 0px 4px rgb(0, 0, 0, 0.75);
+    --input-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar {
@@ -54,6 +53,7 @@ input, button {
     background: none;
     outline: none;
     cursor: initial;
+    -webkit-tap-highlight-color: transparent;
 }
 
 section{
@@ -99,7 +99,7 @@ h4{
     background-color: #fff;
     color: var(--dark);
     border-radius: 0.5rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--input-box-shadow);
 }
 
 .add-todo 
@@ -120,7 +120,7 @@ input[type='reset'] {
 }
 
 .add-todo input[type='reset']{
-    background: var(--danger);
+    background: var(--delete);
 }
 
 .add-todo input[type="submit"]:active{
@@ -149,7 +149,7 @@ input[type='reset'] {
     background-color: #fff;
     padding: 1rem;
     border-radius: 0.5rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--input-box-shadow);
 }
 
 .todo-item .todo-content{
@@ -173,7 +173,6 @@ input[type='reset'] {
     border-radius: 0.25rem;
     color: #fff;
     cursor: pointer;
-    transition: 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     width: 50%;
 }
@@ -187,22 +186,13 @@ input[type='reset'] {
 }
 
 .todo-item .actions .delete-btn{
-    background: var(--danger);
-}
-
-.error-msg{
-    color: rgb(221, 6, 6);
-    margin: 5px;
-    font-size: 14px;
-}
-.error-border{
-    border: 1.5px solid red ;
+    background: var(--delete);
 }
 
 .empty-msg{
     margin: auto;
     color: var(--grey);
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
@@ -211,18 +201,59 @@ input[type='reset'] {
     caret-color: transparent;
 }
 
+#overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#msg-box{
+    height: 120px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 20px;
+    padding: 15px;
+}
+
+#close-btn{
+    background-color: #8052ec;
+    width: 60px;
+    height: 33px;
+    border-radius: 0.3rem;
+    color: white;
+    padding: 0.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:active{
+        background-color: #6a55c8;
+        transform: scale(0.98);
+
+    }
+}
+
 @media screen and (max-width:799px){
 
     body{
-        display: unset;
-        background: unset;
-        color: unset;
+        height: 100%;
     }
-
+    
     .todo-app{
         width: 100%;
         height: 100vh;
         border-radius: unset;
+        overflow-x: hidden;
     }
 
     .greeting .title,
@@ -254,7 +285,7 @@ input[type='reset'] {
     }
  
     .todo-item .todo-content input{
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .todo-item .actions{
@@ -270,13 +301,9 @@ input[type='reset'] {
     input[type='reset'] {
         width: 50%;
     }
-    
-    .error-msg{
-        font-size: 12px;
-    }
 
     .empty-msg{
-        font-size: 0.775rem;
+        font-size: 0.9rem;
     }
 }
 

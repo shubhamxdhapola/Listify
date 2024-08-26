@@ -1,6 +1,5 @@
 let todoList = JSON.parse(localStorage.getItem('todo')) || [];
 const nameInput = document.getElementById('name');
-let errorCount = 0;
 
 nameInput.addEventListener('click', showCursorOnClick);
 nameInput.addEventListener('keypress', saveNameOnEnter);
@@ -43,95 +42,13 @@ function addTodoItem() {
         localStorage.setItem('todo', JSON.stringify(todoList));
         document.getElementById('todo-input-box').value = '';
         
-    } else if (errorCount === 0) {
-        displayEmptyTodoError();
-        errorCount = 1;
+    } else { 
+        handleInputError("Please enter a task!"); 
     }
-    
+       
     displayTodo();
 }
-
-function displayEmptyTodoError() {
-
-    const todoBox = document.getElementById('todo-input-box');
-    const errorContainer = document.getElementById('get-todo');
-
-    const errorMsgContainer = document.createElement('div');
-    errorMsgContainer.className = 'error-msg';
-
-    const errorIcon = document.createElement('i');
-    errorIcon.className = 'fa-solid fa-circle-exclamation';
-
-    const errorText = document.createElement('span');
-    errorText.innerText = " Input can't be empty";
-
-    errorMsgContainer.appendChild(errorIcon);
-    errorMsgContainer.appendChild(errorText);
-    errorContainer.appendChild(errorMsgContainer);
-
-    todoBox.classList.add('error-border');
-
-    todoBox.addEventListener('input', () => {
-        if (todoBox.value.trim() !== '') {
-            clearTodoError();
-        }
-    });
-}
-
-function clearTodoError() {
-
-    const todoBox = document.getElementById('todo-input-box');
-    const errorContainer = document.querySelector('.error-msg');
-
-    if (errorContainer) {
-        errorContainer.remove();
-    }
-
-    todoBox.classList.remove('error-border');
-    errorCount = 0;
-}
-
-function displayFieldError(borderID) {
     
-    const borderElement = document.getElementById(borderID);
-    const errorContainer = document.createElement('div');
-    errorContainer.className = 'error-msg';
-    errorContainer.id = `error-${borderID}`;
-
-    const errorIcon = document.createElement('i');
-    errorIcon.className = 'fa-solid fa-circle-exclamation';
-
-    const errorText = document.createElement('span');
-    errorText.innerText = " Input can't be empty";
-
-    errorContainer.appendChild(errorIcon);
-    errorContainer.appendChild(errorText);
-    borderElement.after(errorContainer);
-
-    borderElement.classList.add('error-border');
-
-    const ediTodos = document.getElementsByClassName('edit-todo');
-    for (let editTodo of ediTodos) {
-        editTodo.addEventListener('input', () => {
-            if (editTodo.value.trim() !== '') {
-                clearFieldError(borderID);
-            }
-        });
-    }
-}
-
-function clearFieldError(borderID) {
-    const borderElement = document.getElementById(borderID);
-    const errorContainer = document.getElementById(`error-${borderID}`);
-
-    if (errorContainer) {
-        errorContainer.remove();
-    }
-
-    borderElement.classList.remove('error-border');
-    errorCount = 0;
-}
-
 function displayTodo() {
 
     const todoListContainer = document.getElementById('todo-list-container');
@@ -141,7 +58,6 @@ function displayTodo() {
 
         const todoItem = document.createElement('div');
         todoItem.className = 'todo-item';
-        todoItem.id = `todo-${todoIndex + 1}`;
 
         const todoContent = document.createElement('div');
         todoContent.className = 'todo-content';
@@ -185,10 +101,7 @@ function editTodo(todoContent, todoIndex, editBtn) {
         inputField.setSelectionRange(inputField.value.length, inputField.value.length);
 
     } else if (inputField.value.trim() === '') {
-        if (errorCount === 0) {
-            displayFieldError(todoContent.parentElement.id);
-            errorCount = 1;
-        }
+        handleInputError("Please enter a task!"); 
         inputField.readOnly = false;
         editBtn.innerHTML = saveIcon;
         inputField.focus();
@@ -204,7 +117,6 @@ function deleteTodo(todoIndex) {
     todoList.splice(todoIndex, 1);
     localStorage.setItem('todo', JSON.stringify(todoList));
     displayTodo();
-
 }
 
 function checkEmptyTodoList(){
@@ -213,6 +125,63 @@ function checkEmptyTodoList(){
         noTodos.innerHTML = '<div class="empty-msg">Your todo list is empty</div>'
     }
 }
+
+function handleInputError (message){
+
+    let overlay = document.getElementById('overlay');
+    let closeBtn = document.getElementById('close-btn');
+    let msg = document.getElementById('msg');
+
+    overlay.style.display = 'flex'
+    msg.innerText = message
+
+    closeBtn.addEventListener('click', () => {
+        overlay.style.display = 'none'
+    })
+}
+
+function validateInputSize (userNameLength, inputLength, todoItemLength) {
+    
+    const userName = document.getElementById('name')
+    const todoInput = document.getElementById('todo-input-box')
+
+    userName.addEventListener('input', ()=>{
+       if(userName.value.length > userNameLength){
+            userName.value = userName.value.slice(0, userNameLength)
+            handleInputError('Max input limit reached!')
+        }
+    })
+
+    todoInput.addEventListener('input', ()=>{
+        
+        if(todoInput.value.length > inputLength){
+            todoInput.value = todoInput.value.slice(0, inputLength)
+            handleInputError('Max input limit reached!')
+
+        }
+    })
+
+    document.addEventListener('input', (e) => {
+        if (e.target && e.target.classList.contains('edit-todo')) {
+            if (e.target.value.length > todoItemLength) {
+                e.target.value = e.target.value.slice(0, todoItemLength);
+                handleInputError('Max input limit reached!')
+            }
+        }
+    });
+}
+
+    if (window.innerWidth <= 500){
+        validateInputSize(12, 25, 25)
+
+    } else if (window.innerWidth > 500 && 
+        window.innerWidth < 800){
+        validateInputSize(15, 30, 30)
+
+    } else {
+        validateInputSize(20, 57, 57)
+    }
+    
 
 document.getElementById('clear-todos-btn')
 .addEventListener('click', () => {

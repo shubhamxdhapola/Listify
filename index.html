@@ -9,12 +9,24 @@
 </head>
 <body>
 
+    <div id="overlay">
+        <div id="msg-box">
+            <div class="msg-container">
+                <p id="msg"></p>
+            </div>
+            <div class="close-btn-container">
+                <button id="close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+
     <main class="todo-app">
 
         <section class="greeting">
             <h2 class="title">
                 <span> What's up, </span> 
-                <input type="text" id="name", placeholder="Name here">
+                <input type="text" id="name" placeholder="Name here">
             </h2>
         </section>
 
@@ -24,9 +36,9 @@
                     <h4> What's on your todo list? </h4>
                 </div>
                 <div class="input-box-and-buttons">
-                    <input type="text" id="todo-input-box" placeholder="Write your todo here">  
+                    <input type="text" id="todo-input-box" placeholder="Write your todo here" >  
                     <div class="buttons-container">
-                        <input type="submit" value="Add todo" id="add-todo-btn"/ >
+                        <input type="submit" value="Add task" id="add-todo-btn"/ >
                         <input type="reset" value="Clear all" id="clear-todos-btn"/>
                     </div>
                 </div>                
