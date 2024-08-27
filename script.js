@@ -87,7 +87,7 @@ function displayTodo() {
     checkEmptyTodoList();
 }
 
-function editTodo(todoContent, todoIndex, editBtn) {
+function editTodo (todoContent, todoIndex, editBtn) {
 
     const inputField = todoContent.querySelector('input');
     const editIcon = '<i class="fa-regular fa-pen-to-square"></i>'
@@ -109,17 +109,18 @@ function editTodo(todoContent, todoIndex, editBtn) {
     } else {
         todoList[todoIndex].todoName = inputField.value.trim();
         localStorage.setItem('todo', JSON.stringify(todoList));
-        errorCount = 0;
     }
 }
 
 function deleteTodo(todoIndex) {
+
     todoList.splice(todoIndex, 1);
     localStorage.setItem('todo', JSON.stringify(todoList));
     displayTodo();
 }
 
 function checkEmptyTodoList(){
+
     const noTodos = document.querySelector('#todo-list-container');
     if (noTodos.childElementCount === 0) {
         noTodos.innerHTML = '<div class="empty-msg">Your todo list is empty</div>'
