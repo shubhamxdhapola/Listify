@@ -1,6 +1,6 @@
-# Todo List Application
+## Listify
 
-This is a dynamic Todo List web application built with HTML, CSS, and JavaScript. The app allows users to manage their daily tasks effectively by adding, editing, and deleting todo items. It also includes user input validation, responsive design, and local storage to persist data.
+**Listify** is a dynamic Todo List web application built with HTML, CSS, and JavaScript. The app allows users to manage their daily tasks effectively by adding, editing, and deleting todo items. It also includes user input validation, responsive design, and local storage to persist data.
 
 ## Features
 
