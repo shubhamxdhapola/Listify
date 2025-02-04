@@ -6,7 +6,6 @@
     --primary-color: #8052ec;
     --light: #eee;
     --dark: #313154;
-    --delete:  #e7140f;
     --grey: #888;
     --input-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -116,11 +115,11 @@ input[type='reset'] {
 }
 
 .add-todo input[type='submit']{
-    background: var(--primary-color);
+    background: #007FFF;
 }
 
 .add-todo input[type='reset']{
-    background: var(--delete);
+    background: #E32636
 }
 
 .add-todo input[type="submit"]:active{
@@ -182,11 +181,11 @@ input[type='reset'] {
 }
 
 .todo-item .actions .edit-btn{
-    background: var(--primary-color);
+    background: #007FFF;
 }
 
 .todo-item .actions .delete-btn{
-    background: var(--delete);
+    background: #E32636
 }
 
 .empty-msg{
@@ -227,7 +226,7 @@ input[type='reset'] {
 }
 
 #close-btn{
-    background-color: #8052ec;
+    background-color: #007FFF;
     width: 60px;
     height: 33px;
     border-radius: 0.3rem;
@@ -237,7 +236,7 @@ input[type='reset'] {
     transition: all 0.2s ease-in-out;
 
     &:active{
-        background-color: #6a55c8;
+        background-color: #0370dd;
         transform: scale(0.98);
 
     }
